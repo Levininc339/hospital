@@ -1,0 +1,13 @@
+spring:
+  application:
+  name: Hospital
+  server:
+    port: 8080
+
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3307/Hospital
+    username: "root"
+    password: "12341234"
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
