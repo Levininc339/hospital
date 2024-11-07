@@ -1,19 +1,18 @@
 package com.hospital.entitys;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "enfermedades")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class Enfermedades {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +23,5 @@ public class Enfermedades {
     private String descripcion_enfermedad;
 
     @Column(name = "fk_tratamiento")
-    private Long fk_tratamiento;
+    private Tratamiento fk_tratamiento;
 }

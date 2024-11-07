@@ -1,10 +1,7 @@
 package com.hospital.entitys;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -13,9 +10,11 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
 
 public class Medicamento {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +31,7 @@ public class Medicamento {
     @Column(name = "fecha_vencimiento")
     private Date fecha_vencimiento;
 
-    @Column(name = "fk_detalle_medicamento")
-    private Long fk_detalle_medicamento;
+    @ManyToOne
+    @JoinColumn(name = "fk_detalle_medicamento", referencedColumnName = "id")
+    private Detalle_medicamentos fk_detalle_medicamento;
 }

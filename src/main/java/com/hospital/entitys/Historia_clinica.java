@@ -1,10 +1,7 @@
 package com.hospital.entitys;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -12,22 +9,28 @@ import java.util.Date;
 @Table(name = "historia_clinica")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class Historia_clinica {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long fk_persona;
-    private Long fk_profesional;
-    private Long fk_diagnostico_r;
+    @ManyToOne
+    @JoinColumn(name = "fk_persona", referencedColumnName = "id")
+    private Persona fk_persona;
+    @ManyToOne
+    @JoinColumn(name = "fk_profesional", referencedColumnName = "id")
+    private Persona fk_profesional;
+    @ManyToOne
+    @JoinColumn(name = "fk_diagnostico_r", referencedColumnName = "id")
+    private Diagnostico fk_diagnostico_r;
     private Date fecha_creacion_historia;
-    private Long fk_centro_atencion_historia;
+    @ManyToOne
+    @JoinColumn(name = "fk_centro_atencion_historia", referencedColumnName = "id")
+    private Centros_atencion fk_centro_atencion_historia;
     private Boolean estado_sistema_historia;
-    private Long fk_diagnostico;
-    private Date fecha_creacion;
-    private Long fk_centro_atencion;
-    private Boolean estado_sistema;
 }

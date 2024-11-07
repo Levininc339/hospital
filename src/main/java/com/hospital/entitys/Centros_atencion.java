@@ -1,19 +1,18 @@
 package com.hospital.entitys;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "centros_atencion")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class Centros_atencion {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

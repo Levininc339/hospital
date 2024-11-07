@@ -7,14 +7,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "personas") //persistence
-
-
 @Getter //Lombok
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Persona { //objeto Java
+public class Persona {
+    private static final long serialVersionUID = 1L;//objeto Java
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +22,15 @@ public class Persona { //objeto Java
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombres")
     private String nombre;
 
     @Column(name = "apellido")
     private String apellido;
 
-    @JoinColumn(name = "fk_tipo_documentos",referencedColumnName = "id")
-    @Column(name = "fk_tipo_documentos")
-    private Long fk_tipo_documentos;
+    @ManyToOne
+    @JoinColumn(name = "fk_tipo_documentos", referencedColumnName = "id")
+    private Tipo_documento fk_tipo_documentos;
 
     @Column(name = "documento")
     private String documento;
@@ -38,8 +38,9 @@ public class Persona { //objeto Java
     @Column(name = "direccion")
     private String direccion;
 
-    @Column(name = "fk_tipo_personas")
-    private Long fk_tipo_personas;
+    @ManyToOne
+    @JoinColumn(name = "fk_tipo_personas", referencedColumnName = "id")
+    private Tipo_persona fk_tipo_personas;
 
     @Column(name = "fecha_nacimiento")
     private Date fecha_nacimiento;
@@ -47,7 +48,7 @@ public class Persona { //objeto Java
     @Column(name = "lugar_nacimiento")
     private String lugar_nacimiento;
 
-    @Column(name = "estado sistema")
+    @Column(name = "estado_sistema")
     private Boolean estado_sistema;
 
 }
